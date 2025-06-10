@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body class="flex flex-col justify-center items-center p-8 bg-black gap-4" >
+		<slot />
+	</body>
+	<script is:inline src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</html>
+
+<style>
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+</style>
