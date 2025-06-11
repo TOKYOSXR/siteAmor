@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+		<title>Astro Basics</title>
+	</head>
+	<body class="bg-white">
+		<slot />
+	</body>
+</html>
+
+<style>
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+</style>

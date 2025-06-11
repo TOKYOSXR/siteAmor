@@ -1,0 +1,77 @@
+---
+
+---
+
+<div class="flex min-h-full flex-col justify-center items-center px-6 py-12">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div class="flex justify-center items-center">
+            <i class="bx bxs-heart text-red-700 text-9xl"></i>
+        </div>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form id="login-form" class="space-y-6" action="#" method="POST">
+            <div>
+                <div class="flex items-center justify-center">
+                    <label
+                        for="password"
+                        class="block text-sm font-medium text-red-700"
+                    >
+                        Digite a minha senha
+                    </label>
+                </div>
+                <div class="mt-2">
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        autocomplete="current-password"
+                        required
+                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        placeholder="••••"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <button
+                    type="submit"
+                    class="flex w-full justify-center rounded-md bg-red-700 px-3 py-1.5 text-sm font-semibold text-white shadow hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
+                >
+                    Clica aquiiii
+                </button>
+            </div>
+        </form>
+
+        <p id="erro" class="text-red-500 text-sm text-center hidden mt-4">
+            Senha incorreta
+        </p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("login-form");
+        const senhaInput = document.getElementById(
+            "password",
+        ) as HTMLInputElement;
+        const erro = document.getElementById("erro");
+
+        if (!form || !senhaInput || !erro) {
+            console.error("Elementos necessários não encontrados no DOM");
+            return;
+        }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const senha = senhaInput.value;
+
+            if (senha === "1311") {
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "/home"; // altere para a rota protegida
+            } else {
+                erro.classList.remove("hidden");
+            }
+        });
+    });
+</script>

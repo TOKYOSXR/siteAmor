@@ -1,21 +1,15 @@
----
-const startDate = new Date('2025-03-09T00:00:00');
----
-
 <div class="text-white text-xl font-bold flex flex-col items-center p-4">
-    <span>Estamos juntos há: </span>
-  <span id="contador">Carregando contador...</span>
+  <span class="mb-4">Estamos juntos há:</span>
+  <div id="contador" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 justify-items-center"></div>
 </div>
 
 <script>
-  // Espera o DOM carregar
   document.addEventListener("DOMContentLoaded", function () {
-    const startDate: Date = new Date("2025-03-09T00:00:00");
+    const startDate = new Date("2025-03-09T00:00:00");
 
     function updateCounter() {
-      const now: Date = new Date();
-      let diff: number = now.getTime() - startDate.getTime();
-
+      const now = new Date();
+      let diff = now.getTime() - startDate.getTime();
       if (diff < 0) diff = 0;
 
       const seconds = Math.floor(diff / 1000);
@@ -31,10 +25,28 @@ const startDate = new Date('2025-03-09T00:00:00');
       const months = Math.floor((days % 365) / 30);
       const remainingDays = (days % 365) % 30;
 
-      const text = `${years} ano${years !== 1 ? 's' : ''} ${months} mês${months !== 1 ? 'es' : ''} ${remainingDays} dia${remainingDays !== 1 ? 's' : ''} ${remainingHours} hora${remainingHours !== 1 ? 's' : ''} ${remainingMinutes} minuto${remainingMinutes !== 1 ? 's' : ''} ${remainingSeconds} segundo${remainingSeconds !== 1 ? 's' : ''}`;
+      const timeUnits = [
+        { label: "ano", value: years },
+        { label: "mês", value: months },
+        { label: "dia", value: remainingDays },
+        { label: "hora", value: remainingHours },
+        { label: "minuto", value: remainingMinutes },
+        { label: "segundo", value: remainingSeconds },
+      ];
 
-      const el = document.getElementById("contador");
-      if (el) el.textContent = text;
+      const contador = document.getElementById("contador");
+      if (contador) {
+        contador.innerHTML = timeUnits
+          .map(
+            (unit) => `
+            <div class="bg-white text-black rounded-2xl shadow-md px-4 py-3 text-center w-full max-w-[100px]">
+              <div class="text-2xl font-extrabold">${unit.value}</div>
+              <div class="text-sm">${unit.label}${unit.value !== 1 ? "s" : ""}</div>
+            </div>
+          `
+          )
+          .join("");
+      }
     }
 
     updateCounter();
